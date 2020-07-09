@@ -33,7 +33,7 @@ pod 'dsBridge'
 pod 'NTLBridge'
 ```
 
-不需要其他任何代码。
+不需要改动其他任何代码（包括引用），但是也因此导致，该库不能与原始库同时使用。
 
 # DSBridge  for  IOS
 
