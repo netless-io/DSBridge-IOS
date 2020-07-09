@@ -1,5 +1,43 @@
-English| [中文简体](https://github.com/wendux/DSBridge-IOS/blob/master/readme-chs.md)   
+# Fork Notice
+
+* English 
+
+>this is a fork from DSBridge-IOS which add Objective-C++ support.
+I also open a [PR](https://github.com/wendux/DSBridge-IOS/pull/114) for it.
+
+To integrate this fork into your Xcode project using CocoaPods, specify it in your Podfile:
+
+change
+
+```ruby
+pod 'dsBridge'
+```
+
+to 
+
+```ruby
+pod 'NTLBridge'
+```
+
+then You needn't do any other change.
+
+* 中文
+
+该项目为 DSBridge-IOS 的 fork 项目，添加了 Objective-C++ 的支持。该改动已同时向原仓库项目提出一个[PR](https://github.com/wendux/DSBridge-IOS/pull/114)。
+只需要将
+```ruby
+pod 'dsBridge'
+```
+
+```ruby
+pod 'NTLBridge'
+```
+
+不需要其他任何代码。
+
 # DSBridge  for  IOS
+
+English| [中文简体](https://github.com/wendux/DSBridge-IOS/blob/master/readme-chs.md)   
 
 ![dsBridge](https://github.com/wendux/DSBridge-IOS/raw/master/img/dsbridge.png)
 
