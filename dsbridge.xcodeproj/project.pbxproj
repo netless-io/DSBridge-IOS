@@ -28,6 +28,9 @@
 		81CFC8602029456C00CF9D83 /* readme-chs.md in Sources */ = {isa = PBXBuildFile; fileRef = 81CFC85F2029456C00CF9D83 /* readme-chs.md */; };
 		81CFC868202C42AA00CF9D83 /* img in Resources */ = {isa = PBXBuildFile; fileRef = 81CFC867202C42AA00CF9D83 /* img */; };
 		81EBBFFF1EF24DDE00D1E4C1 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 81EBBFFD1EF24DDE00D1E4C1 /* README.md */; };
+		8A7E078827F7F178006D2412 /* libdsbridge.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 818F0B8E1E18C08100679925 /* libdsbridge.a */; };
+		8A7E079127F7F1E9006D2412 /* test.html in Resources */ = {isa = PBXBuildFile; fileRef = 818F0BCF1E1A820B00679925 /* test.html */; };
+		8A7E079627F81625006D2412 /* MemoryLeakTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A7E079527F81625006D2412 /* MemoryLeakTest.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,6 +40,20 @@
 			proxyType = 1;
 			remoteGlobalIDString = 818F0B8D1E18C08100679925;
 			remoteInfo = jsbridge;
+		};
+		8A7E078927F7F178006D2412 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 818F0B861E18C08100679925 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 818F0B8D1E18C08100679925;
+			remoteInfo = dsbridge;
+		};
+		8A7E079227F7F3FC006D2412 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 818F0B861E18C08100679925 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 818F0B9D1E18C0AA00679925;
+			remoteInfo = dsbridgedemo;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -87,8 +104,11 @@
 		81CFC85F2029456C00CF9D83 /* readme-chs.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "readme-chs.md"; sourceTree = "<group>"; };
 		81CFC861202953CB00CF9D83 /* .travis.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .travis.yml; sourceTree = "<group>"; };
 		81CFC867202C42AA00CF9D83 /* img */ = {isa = PBXFileReference; lastKnownFileType = folder; path = img; sourceTree = "<group>"; };
-		81EBBFF71EF246BD00D1E4C1 /* dsBridge.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dsBridge.podspec; sourceTree = "<group>"; };
 		81EBBFFD1EF24DDE00D1E4C1 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		8A7E077E27F7F0B2006D2412 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
+		8A7E077F27F7F0B2006D2412 /* NTLBridge.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = NTLBridge.podspec; sourceTree = "<group>"; };
+		8A7E078427F7F178006D2412 /* DSBridgeTest.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DSBridgeTest.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8A7E079527F81625006D2412 /* MemoryLeakTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MemoryLeakTest.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,20 +127,30 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		8A7E078127F7F178006D2412 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8A7E078827F7F178006D2412 /* libdsbridge.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		818F0B851E18C08100679925 = {
 			isa = PBXGroup;
 			children = (
+				8A7E077F27F7F0B2006D2412 /* NTLBridge.podspec */,
+				8A7E077E27F7F0B2006D2412 /* Package.swift */,
 				812F1D3B216F1F9D00B5BD0C /* publish.sh */,
 				81CFC867202C42AA00CF9D83 /* img */,
 				81CFC861202953CB00CF9D83 /* .travis.yml */,
 				81CFC85F2029456C00CF9D83 /* readme-chs.md */,
 				81EBBFFD1EF24DDE00D1E4C1 /* README.md */,
-				81EBBFF71EF246BD00D1E4C1 /* dsBridge.podspec */,
 				818F0B901E18C08100679925 /* dsbridge */,
 				818F0B9F1E18C0AA00679925 /* dsbridgedemo */,
+				8A7E078527F7F178006D2412 /* DSBridgeTest */,
 				818F0B8F1E18C08100679925 /* Products */,
 				81EBBFFA1EF24A7300D1E4C1 /* Frameworks */,
 			);
@@ -131,6 +161,7 @@
 			children = (
 				818F0B8E1E18C08100679925 /* libdsbridge.a */,
 				818F0B9E1E18C0AA00679925 /* dsbridgedemo.app */,
+				8A7E078427F7F178006D2412 /* DSBridgeTest.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -189,6 +220,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		8A7E078527F7F178006D2412 /* DSBridgeTest */ = {
+			isa = PBXGroup;
+			children = (
+				8A7E079527F81625006D2412 /* MemoryLeakTest.m */,
+			);
+			path = DSBridgeTest;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -227,12 +266,32 @@
 			productReference = 818F0B9E1E18C0AA00679925 /* dsbridgedemo.app */;
 			productType = "com.apple.product-type.application";
 		};
+		8A7E078327F7F178006D2412 /* DSBridgeTest */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8A7E078B27F7F178006D2412 /* Build configuration list for PBXNativeTarget "DSBridgeTest" */;
+			buildPhases = (
+				8A7E078027F7F178006D2412 /* Sources */,
+				8A7E078127F7F178006D2412 /* Frameworks */,
+				8A7E078227F7F178006D2412 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8A7E078A27F7F178006D2412 /* PBXTargetDependency */,
+				8A7E079327F7F3FC006D2412 /* PBXTargetDependency */,
+			);
+			name = DSBridgeTest;
+			productName = DSBridgeTest;
+			productReference = 8A7E078427F7F178006D2412 /* DSBridgeTest.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		818F0B861E18C08100679925 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 1330;
 				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = "杜文";
 				TargetAttributes = {
@@ -246,6 +305,12 @@
 						LastSwiftMigration = 0940;
 						ProvisioningStyle = Automatic;
 					};
+					8A7E078327F7F178006D2412 = {
+						CreatedOnToolsVersion = 13.3;
+						LastSwiftMigration = 1330;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 818F0B9D1E18C0AA00679925;
+					};
 				};
 			};
 			buildConfigurationList = 818F0B891E18C08100679925 /* Build configuration list for PBXProject "dsbridge" */;
@@ -253,6 +318,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -263,6 +329,7 @@
 			targets = (
 				818F0B8D1E18C08100679925 /* dsbridge */,
 				818F0B9D1E18C0AA00679925 /* dsbridgedemo */,
+				8A7E078327F7F178006D2412 /* DSBridgeTest */,
 			);
 		};
 /* End PBXProject section */
@@ -277,6 +344,14 @@
 				818F0BB01E18C0AA00679925 /* LaunchScreen.storyboard in Resources */,
 				818F0BAD1E18C0AA00679925 /* Assets.xcassets in Resources */,
 				818F0BAB1E18C0AA00679925 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8A7E078227F7F178006D2412 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8A7E079127F7F1E9006D2412 /* test.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -309,6 +384,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		8A7E078027F7F178006D2412 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8A7E079627F81625006D2412 /* MemoryLeakTest.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -316,6 +399,16 @@
 			isa = PBXTargetDependency;
 			target = 818F0B8D1E18C08100679925 /* dsbridge */;
 			targetProxy = 818F0BC61E18D4D800679925 /* PBXContainerItemProxy */;
+		};
+		8A7E078A27F7F178006D2412 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 818F0B8D1E18C08100679925 /* dsbridge */;
+			targetProxy = 8A7E078927F7F178006D2412 /* PBXContainerItemProxy */;
+		};
+		8A7E079327F7F3FC006D2412 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 818F0B9D1E18C0AA00679925 /* dsbridgedemo */;
+			targetProxy = 8A7E079227F7F3FC006D2412 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -379,7 +472,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -421,7 +514,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -461,12 +554,13 @@
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = XTLLEQZMD7;
 				INFOPLIST_FILE = dsbridgedemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = wendu.dsbridgedemo.xx;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "dsbridgedemo/dsbridgedemo-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -479,11 +573,88 @@
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = XTLLEQZMD7;
 				INFOPLIST_FILE = dsbridgedemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = wendu.dsbridgedemo.xx;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "dsbridgedemo/dsbridgedemo-Bridging-Header.h";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		8A7E078C27F7F178006D2412 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = io.agora.DSBridgeTest;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OBJC_BRIDGING_HEADER = "DSBridgeTest/DSBridgeTest-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/dsbridgedemo.app/dsbridgedemo";
+			};
+			name = Debug;
+		};
+		8A7E078D27F7F178006D2412 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MARKETING_VERSION = 1.0;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = io.agora.DSBridgeTest;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OBJC_BRIDGING_HEADER = "DSBridgeTest/DSBridgeTest-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/dsbridgedemo.app/dsbridgedemo";
 			};
 			name = Release;
 		};
@@ -513,6 +684,15 @@
 			buildConfigurations = (
 				818F0BB31E18C0AA00679925 /* Debug */,
 				818F0BB41E18C0AA00679925 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8A7E078B27F7F178006D2412 /* Build configuration list for PBXNativeTarget "DSBridgeTest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8A7E078C27F7F178006D2412 /* Debug */,
+				8A7E078D27F7F178006D2412 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
