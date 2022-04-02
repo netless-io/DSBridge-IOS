@@ -461,7 +461,11 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
                 NSLog(@"%@",e);
             }
         }
-        if([args[@"complete"] boolValue]){
+        
+        id complete = args[@"complete"];
+        if (complete && ![complete boolValue]) {
+
+        } else {
             [handerMap removeObjectForKey:args[@"id"]];
         }
     }
