@@ -16,6 +16,7 @@
     NSError *error;
     
     if (![NSJSONSerialization isValidJSONObject:dict]) {
+        NSAssert(NO, @"invalid json object, %@", dict);
         return @"{}";
     }
     
