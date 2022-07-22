@@ -152,6 +152,21 @@ completionHandler:(void (^)(NSString * _Nullable result))completionHandler
     }
 }
 
+- (WKNavigation *)loadData:(NSData *)data MIMEType:(NSString *)MIMEType characterEncodingName:(NSString *)characterEncodingName baseURL:(NSURL *)baseURL {
+    [self resetCallInfoList];
+    return [super loadData:data MIMEType:MIMEType characterEncodingName:characterEncodingName baseURL:baseURL];
+}
+
+- (WKNavigation *)loadHTMLString:(NSString *)string baseURL:(NSURL *)baseURL {
+    [self resetCallInfoList];
+    return [super loadHTMLString:string baseURL:baseURL];
+}
+
+- (WKNavigation *)loadRequest:(NSURLRequest *)request {
+    [self resetCallInfoList];
+    return [super loadRequest:request];
+}
+
 - (void)webView:(WKWebView *)webView runJavaScriptAlertPanelWithMessage:(NSString *)message
 initiatedByFrame:(WKFrameInfo *)frame
 completionHandler:(void (^)(void))completionHandler
@@ -371,6 +386,10 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
 
 - (void)setDebugMode:(bool)debug{
     isDebug=debug;
+}
+
+- (void)resetCallInfoList {
+    callInfoList = [NSMutableArray array];
 }
 
 - (void)loadUrl: (NSString *)url
