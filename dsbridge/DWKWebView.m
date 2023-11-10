@@ -137,17 +137,7 @@ completionHandler:(void (^)(NSString * _Nullable result))completionHandler
             if(jsDialogBlock){
                 promptHandler=completionHandler;
             }
-            UIAlertView *alert = [[UIAlertView alloc]
-                                  initWithTitle:prompt
-                                  message:@""
-                                  delegate:self
-                                  cancelButtonTitle:dialogTextDic[@"promptCancelBtn"]?dialogTextDic[@"promptCancelBtn"]:@"取消"
-                                  otherButtonTitles:dialogTextDic[@"promptOkBtn"]?dialogTextDic[@"promptOkBtn"]:@"确定",
-                                  nil];
-            [alert setAlertViewStyle:UIAlertViewStylePlainTextInput];
-            txtName = [alert textFieldAtIndex:0];
-            txtName.text=defaultText;
-            [alert show];
+            NSLog(@"NTLBridge prompt error: %@", defaultText);
         }
     }
 }
@@ -186,13 +176,7 @@ completionHandler:(void (^)(void))completionHandler
         if(jsDialogBlock){
             alertHandler=completionHandler;
         }
-        UIAlertView *alertView =
-        [[UIAlertView alloc] initWithTitle:dialogTextDic[@"alertTitle"]?dialogTextDic[@"alertTitle"]:@"提示"
-                                   message:message
-                                  delegate:self
-                         cancelButtonTitle:dialogTextDic[@"alertBtn"]?dialogTextDic[@"alertBtn"]:@"确定"
-                         otherButtonTitles:nil,nil];
-        [alertView show];
+        NSLog(@"NTLBridge runJavaScriptAlertPanelWithMessage error: %@", message);
     }
 }
 
@@ -213,13 +197,7 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
         if(jsDialogBlock){
             confirmHandler=completionHandler;
         }
-        UIAlertView *alertView =
-        [[UIAlertView alloc] initWithTitle:dialogTextDic[@"confirmTitle"]?dialogTextDic[@"confirmTitle"]:@"提示"
-                                   message:message
-                                  delegate:self
-                         cancelButtonTitle:dialogTextDic[@"confirmCancelBtn"]?dialogTextDic[@"confirmCancelBtn"]:@"取消"
-                         otherButtonTitles:dialogTextDic[@"confirmOkBtn"]?dialogTextDic[@"confirmOkBtn"]:@"确定", nil];
-        [alertView show];
+        NSLog(@"NTLBridge runJavaScriptConfirmPanelWithMessage error: %@", message);
     }
 }
 
@@ -264,25 +242,6 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
     if( self.DSUIDelegate
        && [self.DSUIDelegate respondsToSelector:@selector(webView:commitPreviewingViewController:)]){
         return [self.DSUIDelegate webView:webView commitPreviewingViewController:previewingViewController];
-    }
-}
-
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    if(dialogType==1 && alertHandler){
-        alertHandler();
-        alertHandler=nil;
-    }else if(dialogType==2 && confirmHandler){
-        confirmHandler(buttonIndex==1?YES:NO);
-        confirmHandler=nil;
-    }else if(dialogType==3 && promptHandler && txtName) {
-        if(buttonIndex==1){
-            promptHandler([txtName text]);
-        }else{
-            promptHandler(@"");
-        }
-        promptHandler=nil;
-        txtName=nil;
     }
 }
 

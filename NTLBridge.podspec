@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "NTLBridge"
-  s.version      = "3.1.6"
+  s.version      = "3.1.7"
   s.summary      = "a fork from dsBridge"
 
   s.description  = <<-DESC
@@ -17,6 +17,9 @@ Pod::Spec.new do |s|
   s.source_files  =  "dsbridge/*"
   s.public_header_files = "dsbridge/*.h"
   s.frameworks  = "UIKit"
+  s.pod_target_xcconfig = {
+    'CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF' => 'NO'
+  }
 
 end
 
