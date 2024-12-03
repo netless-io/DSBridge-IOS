@@ -8,7 +8,7 @@ enum{
  DSB_API_DISABLESAFETYALERTBOX
 };
 
-@interface JSBUtil : NSObject
+@interface NTLJSBUtil : NSObject
 + (NSString * _Nullable)objToJsonString:(id  _Nonnull)dict;
 + (id  _Nullable)jsonStringToObject:(NSString * _Nonnull)jsonString;
 +(NSString *_Nullable)methodByNameArg:(NSInteger)argNum

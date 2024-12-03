@@ -17,7 +17,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     CGRect bounds=self.view.bounds;
-    DWKWebView * dwebview=[[DWKWebView alloc] initWithFrame:CGRectMake(0, 25, bounds.size.width, bounds.size.height-25)];
+    NTLDWKWebView * dwebview=[[NTLDWKWebView alloc] initWithFrame:CGRectMake(0, 25, bounds.size.width, bounds.size.height-25)];
     [self.view addSubview:dwebview];
     
     // register api object without namespace

@@ -7,11 +7,11 @@
 //
 
 #import <XCTest/XCTest.h>
-#import "dsbridge.h"
+#import "ntl_dsbridge.h"
 
 @interface MemoryLeakTest: XCTestCase
 
-@property (nonatomic, strong) DWKWebView* webView;
+@property (nonatomic, strong) NTLDWKWebView* webView;
 
 @end
 
@@ -21,7 +21,7 @@ static NSTimeInterval kTimeout = 30;
 
 - (void)setUp
 {
-    DWKWebView * webview = [[DWKWebView alloc] initWithFrame:CGRectMake(0, 25, 100, 100)];
+    NTLDWKWebView * webview = [[NTLDWKWebView alloc] initWithFrame:CGRectMake(0, 25, 100, 100)];
     NSString *path = [[NSBundle mainBundle] bundlePath];
     NSURL *baseURL = [NSURL fileURLWithPath:path];
     NSString * htmlPath = [[NSBundle mainBundle] pathForResource:@"test"
