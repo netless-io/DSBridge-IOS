@@ -10,7 +10,7 @@
 
 typedef void (^JSCallback)(NSString * _Nullable result,BOOL complete);
 
-@interface NTLDWKWebView : WKWebView <WKUIDelegate>
+@interface DWKWebView : WKWebView <WKUIDelegate>
 
 @property (nullable, nonatomic, weak) id <WKUIDelegate> DSUIDelegate;
 

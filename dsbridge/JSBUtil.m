@@ -4,12 +4,12 @@
 //  Copyright © 2016年 杜文. All rights reserved.
 //
 
-#import "NTLJSBUtil.h"
+#import "JSBUtil.h"
 #import <objc/runtime.h>
-#import "NTLDWKWebView.h"
+#import "DWKWebView.h"
 
 
-@implementation NTLJSBUtil
+@implementation JSBUtil
 + (NSString *)objToJsonString:(id)dict
 {
     NSString *jsonString = nil;
@@ -55,7 +55,7 @@
 {
     NSString *result = nil;
     if(class){
-        NSArray *arr = [NTLJSBUtil allMethodFromClass:class];
+        NSArray *arr = [JSBUtil allMethodFromClass:class];
         for (int i=0; i<arr.count; i++) {
             NSString *method = arr[i];
             NSArray *tmpArr = [method componentsSeparatedByString:@":"];

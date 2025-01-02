@@ -1,25 +1,25 @@
-#import "NTLDWKWebView.h"
-#import "NTLJSBUtil.h"
-#import "NTLDSCallInfo.h"
-#import "NTLInternalApis.h"
+#import "DWKWebView.h"
+#import "JSBUtil.h"
+#import "DSCallInfo.h"
+#import "InternalApis.h"
 #import <objc/message.h>
 
 
-@protocol NTLScriptDelegate <NSObject>
+@protocol ScriptDelegate <NSObject>
 
 -(NSString *)call:(NSString*) method :(NSString*) argStr;
 
 @end
 
-@interface NTLInternalScriptsHandler : NSObject<WKScriptMessageHandler>
+@interface InternalScriptsHandler : NSObject<WKScriptMessageHandler>
 
-@property (nonatomic, weak) id<NTLScriptDelegate> handler;
+@property (nonatomic, weak) id<ScriptDelegate> handler;
 
 @end
 
-@implementation NTLInternalScriptsHandler
+@implementation InternalScriptsHandler
 
-- (instancetype)initWithHandler:(id<NTLScriptDelegate>)handler {
+- (instancetype)initWithHandler:(id<ScriptDelegate>)handler {
     self = [super init];
     if (self) {
         _handler = handler;
@@ -41,7 +41,7 @@
 
 @end
 
-@implementation NTLDWKWebView
+@implementation DWKWebView
 {
     void (^alertHandler)(void);
     void (^confirmHandler)(BOOL);
@@ -52,7 +52,7 @@
     bool jsDialogBlock;
     NSMutableDictionary<NSString *,id> *javaScriptNamespaceInterfaces;
     NSMutableDictionary *handerMap;
-    NSMutableArray<NTLDSCallInfo *> * callInfoList;
+    NSMutableArray<DSCallInfo *> * callInfoList;
     NSDictionary<NSString*,NSString*> *dialogTextDic;
     UITextField *txtName;
     UInt64 lastCallTime ;
@@ -80,7 +80,7 @@
     isDebug=false;
     dialogTextDic=@{};
     
-    NTLInternalScriptsHandler *internal = [[NTLInternalScriptsHandler alloc] initWithHandler:(id<NTLScriptDelegate>)self];
+    InternalScriptsHandler *internal = [[InternalScriptsHandler alloc] initWithHandler:(id<ScriptDelegate>)self];
     
     WKUserScript *script = [[WKUserScript alloc] initWithSource:@"window._dswk=true;"
                                                   injectionTime:WKUserScriptInjectionTimeAtDocumentStart
@@ -93,7 +93,7 @@
         super.UIDelegate=self;
     }
     // add internal Javascript Object
-    NTLInternalApis *  interalApis= [[NTLInternalApis alloc] init];
+    InternalApis *  interalApis= [[InternalApis alloc] init];
     interalApis.webview=self;
     [self addJavascriptObject:interalApis namespace:@"_dsb"];
     return self;
@@ -260,7 +260,7 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
 
 -(NSString *)call:(NSString*) method :(NSString*) argStr
 {
-    NSArray *nameStr=[NTLJSBUtil parseNamespace:[method stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]]];
+    NSArray *nameStr=[JSBUtil parseNamespace:[method stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]]];
 
     id JavascriptInterfaceObject=javaScriptNamespaceInterfaces[nameStr[0]];
     NSString *error=[NSString stringWithFormat:@"Error! \n Method %@ is not invoked, since there is not a implementation for it",method];
@@ -269,11 +269,11 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
         NSLog(@"Js bridge  called, but can't find a corresponded JavascriptObject , please check your code!");
     }else{
         method=nameStr[1];
-        NSString *methodOne = [NTLJSBUtil methodByNameArg:1 selName:method class:[JavascriptInterfaceObject class]];
-        NSString *methodTwo = [NTLJSBUtil methodByNameArg:2 selName:method class:[JavascriptInterfaceObject class]];
+        NSString *methodOne = [JSBUtil methodByNameArg:1 selName:method class:[JavascriptInterfaceObject class]];
+        NSString *methodTwo = [JSBUtil methodByNameArg:2 selName:method class:[JavascriptInterfaceObject class]];
         SEL sel=NSSelectorFromString(methodOne);
         SEL selasyn=NSSelectorFromString(methodTwo);
-        NSDictionary * args=[NTLJSBUtil jsonStringToObject:argStr];
+        NSDictionary * args=[JSBUtil jsonStringToObject:argStr];
         id arg=args[@"data"];
         if(arg==[NSNull null]){
             arg=nil;
@@ -289,7 +289,7 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
                         if(value!=nil){
                             result[@"data"]=value;
                         }
-                        value=[NTLJSBUtil objToJsonString:result];
+                        value=[JSBUtil objToJsonString:result];
                         value=[value stringByAddingPercentEscapesUsingEncoding: NSUTF8StringEncoding];
                         
                         if(complete){
@@ -335,7 +335,7 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
             NSLog(@"%@",error);
         }while (0);
     }
-    return [NTLJSBUtil objToJsonString:result];
+    return [JSBUtil objToJsonString:result];
 }
 
 - (void)setJavascriptCloseWindowListener:(void (^)(void))callback
@@ -368,7 +368,7 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
 
 -(void)callHandler:(NSString *)methodName arguments:(NSArray *)args completionHandler:(void (^)(id  _Nullable value))completionHandler
 {
-    NTLDSCallInfo *callInfo=[[NTLDSCallInfo alloc] init];
+    DSCallInfo *callInfo=[[DSCallInfo alloc] init];
     callInfo.id=[NSNumber numberWithInt: callId++];
     callInfo.args=args==nil?@[]:args;
     callInfo.method=methodName;
@@ -384,15 +384,15 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
 
 - (void)dispatchStartupQueue{
     if(callInfoList==nil) return;
-    for (NTLDSCallInfo * callInfo in callInfoList) {
+    for (DSCallInfo * callInfo in callInfoList) {
         [self dispatchJavascriptCall:callInfo];
     }
     callInfoList=nil;
 }
 
-- (void) dispatchJavascriptCall:(NTLDSCallInfo*) info{
-    NSString * json=[NTLJSBUtil objToJsonString:@{@"method":info.method,@"callbackId":info.id,
-                                               @"data":[NTLJSBUtil objToJsonString: info.args]}];
+- (void) dispatchJavascriptCall:(DSCallInfo*) info{
+    NSString * json=[JSBUtil objToJsonString:@{@"method":info.method,@"callbackId":info.id,
+                                               @"data":[JSBUtil objToJsonString: info.args]}];
     [self evaluateJavaScript:[NSString stringWithFormat:@"window._handleMessageFromNative(%@)",json]
            completionHandler:nil];
 }
@@ -445,12 +445,12 @@ initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completi
 
 - (bool) hasNativeMethod:(NSDictionary *) args
 {
-    NSArray *nameStr=[NTLJSBUtil parseNamespace:[args[@"name"]stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]]];
+    NSArray *nameStr=[JSBUtil parseNamespace:[args[@"name"]stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]]];
     NSString * type= [args[@"type"] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
     id JavascriptInterfaceObject= [javaScriptNamespaceInterfaces objectForKey:nameStr[0]];
     if(JavascriptInterfaceObject){
-        bool syn=[NTLJSBUtil methodByNameArg:1 selName:nameStr[1] class:[JavascriptInterfaceObject class]]!=nil;
-        bool asyn=[NTLJSBUtil methodByNameArg:2 selName:nameStr[1] class:[JavascriptInterfaceObject class]]!=nil;
+        bool syn=[JSBUtil methodByNameArg:1 selName:nameStr[1] class:[JavascriptInterfaceObject class]]!=nil;
+        bool asyn=[JSBUtil methodByNameArg:2 selName:nameStr[1] class:[JavascriptInterfaceObject class]]!=nil;
         if(([@"all" isEqualToString:type]&&(syn||asyn))
            ||([@"asyn" isEqualToString:type]&&asyn)
            ||([@"syn" isEqualToString:type]&&syn)

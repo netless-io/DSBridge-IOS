@@ -6,8 +6,8 @@
 //  Copyright © 2018年 杜文. All rights reserved.
 //
 
-#import "NTLDSCallInfo.h"
+#import "DSCallInfo.h"
 
-@implementation NTLDSCallInfo
+@implementation DSCallInfo
 
 @end

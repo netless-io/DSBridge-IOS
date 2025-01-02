@@ -1,7 +1,7 @@
-#import "NTLInternalApis.h"
-#import "NTLJSBUtil.h"
+#import "InternalApis.h"
+#import "JSBUtil.h"
 
-@implementation NTLInternalApis
+@implementation InternalApis
 - (id) hasNativeMethod:(id) args
 {
     return [self.webview onMessage:args type: DSB_API_HASNATIVEMETHOD];

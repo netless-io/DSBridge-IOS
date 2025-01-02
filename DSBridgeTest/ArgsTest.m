@@ -7,10 +7,10 @@
 //
 
 #import <XCTest/XCTest.h>
-#import "ntl_dsbridge.h"
+#import "dsbridge.h"
 
 @interface ArgsTest : XCTestCase
-@property (nonatomic, strong) NTLDWKWebView* webView;
+@property (nonatomic, strong) DWKWebView* webView;
 @end
 
 @implementation ArgsTest
@@ -19,7 +19,7 @@ static NSTimeInterval kTimeout = 30;
 
 - (void)setUp
 {
-    NTLDWKWebView * webview = [[NTLDWKWebView alloc] initWithFrame:CGRectMake(0, 25, 100, 100)];
+    DWKWebView * webview = [[DWKWebView alloc] initWithFrame:CGRectMake(0, 25, 100, 100)];
     NSString *path = [[NSBundle mainBundle] bundlePath];
     NSURL *baseURL = [NSURL fileURLWithPath:path];
     NSString * htmlPath = [[NSBundle mainBundle] pathForResource:@"test"
