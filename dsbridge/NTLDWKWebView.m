@@ -3,6 +3,7 @@
 #import "NTLDSCallInfo.h"
 #import "NTLInternalApis.h"
 #import <objc/message.h>
+#import <UIKit/UIKit.h>
 
 
 @protocol NTLScriptDelegate <NSObject>
