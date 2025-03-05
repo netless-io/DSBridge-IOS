@@ -4,16 +4,16 @@
 import PackageDescription
 
 let package = Package(
-    name: "DSBridge-IOS",
+    name: "NTLBridge",
     products: [
         .library(
-            name: "DSBridge-IOS",
-            targets: ["DSBridge-IOS"]),
+            name: "NTLBridge",
+            targets: ["NTLBridge"]),
     ],
     dependencies: [],
     targets: [
         .target(
-            name: "DSBridge-IOS",
+            name: "NTLBridge",
             dependencies: [],
             path: "dsbridge",
             publicHeadersPath: ".",
